@@ -1,0 +1,218 @@
+{
+  "proyectos": [
+    {
+      "slug": "wow-analyzer",
+      "permisos": "755",
+      "nombre": "WoW Auction Analyzer",
+      "tipo": "Full Stack",
+      "descripcion": "Plataforma full-stack que analiza la casa de subastas de World of Warcraft, detecta oportunidades de mercado y avisa por Discord en tiempo real",
+      "imagen": "/proyectos/wow-analyzer.png",
+      "repositorios": [
+        { "etiqueta": "Repositorio", "url": "https://github.com/AdrianMartinCano/wow-analizer" }
+      ],
+      "demo": "https://subasta.codeadrianmc.dev",
+      "tecnologias": ["Java 17", "Spring Boot 3", "Spring Batch", "PostgreSQL", "JPA / Hibernate", "OAuth2", "JWT", "JDA (Discord)", "Angular", "Docker", "Lua"],
+      "caracteristicas": [
+        "Arquitectura Maven multi-módulo (autenticación, persistencia, análisis, batch y bot separados)",
+        "Pipeline Spring Batch que recoge precios de la API de Blizzard cada hora",
+        "Análisis de mercado: señales comprar/vender, volatilidad y arbitraje entre reinos",
+        "Bot de Discord (JDA) con slash commands y notificaciones personalizadas por usuario",
+        "Login con Discord (OAuth2) y autorización mediante JWT",
+        "Addon de WoW en Lua para exportar el inventario directamente al bot"
+      ],
+      "problema": "Mis amigos y yo nos pasábamos horas farmeando items para venderlos en la casa de subastas en lugar de disfrutar de las raids y mazmorras, que es lo divertido del juego. La alternativa era comprar oro con dinero real, pero no todos podían permitírselo. Así que construí una plataforma que vigila el mercado y nos avisa de qué comprar y vender para hacer oro de forma eficiente, sin perder horas farmeando.",
+      "aprendizajes": "Es mi proyecto más grande: 8 meses de desarrollo, ~15.000 líneas y arquitectura multi-módulo. Aprendí a diseñar un pipeline de datos con Spring Batch, a integrar OAuth2 con APIs externas (Blizzard y Discord) y a orquestar varios servicios. El siguiente paso es ampliar la cobertura de tests sobre la lógica de análisis y añadir métricas al batch.",
+      "fecha": "2025 - 2026",
+      "estado": "En producción"
+    },
+    {
+      "slug": "artesanos-del-torno",
+      "permisos": "755",
+      "nombre": "Artesanos del Torno",
+      "tipo": "Full Stack",
+      "descripcion": "Web oficial en producción de una asociación nacional de artesanos: panel de administración, e-commerce con Stripe y newsletter automática",
+      "imagen": "/proyectos/artesanos.png",
+      "repositorios": [
+        { "etiqueta": "Repositorio", "url": "https://github.com/AdrianMartinCano/artesanosdeltorno" }
+      ],
+      "demo": "https://artesanosdeltorno.es",
+      "tecnologias": ["PHP 8", "MySQL / MariaDB", "JavaScript", "HTML5", "CSS3", "JWT", "Stripe", "PHPMailer / SMTP", "Leaflet", "Nginx"],
+      "caracteristicas": [
+        "Sitio en producción para una asociación real",
+        "Panel de administración con API REST en PHP (PDO) y autenticación JWT",
+        "Tienda e-commerce con pasarela de pago Stripe y webhooks",
+        "Newsletter automática con doble opt-in y envío por SMTP",
+        "Mapa de artesanos con Leaflet + OpenStreetMap y SEO con datos estructurados (Schema.org)"
+      ],
+      "problema": "Una asociación nacional de artesanos necesitaba una web profesional que pudieran gestionar ellos mismos —eventos, artesanos, tienda y newsletter— sin llamar a un desarrollador para cada cambio. El reto era darles autonomía total con un panel de administración completo.",
+      "aprendizajes": "Mi primer proyecto en producción con un cliente real: aprendí que la fiabilidad y la facilidad de uso para quien lo administra importan más que cualquier tecnología vistosa. Lo construí en Vanilla JS y PHP a propósito, por simplicidad de despliegue; hoy estructuraría la API con un framework y le añadiría tests automatizados.",
+      "fecha": "2026",
+      "estado": "En producción"
+    },
+    {
+      "slug": "librerias-compartidas",
+      "permisos": "755",
+      "nombre": "Ecosistema de librerías compartidas",
+      "tipo": "Full Stack",
+      "descripcion": "Suite de librerías reutilizables publicadas (Spring Boot + Angular) para construir aplicaciones web profesionales en una fracción del tiempo",
+      "imagen": "/proyectos/librerias.png",
+      "repositorios": [
+        { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/libreriasBackend" },
+        { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/librerias-frontend" }
+      ],
+      "tecnologias": ["Java 21", "Spring Boot 3.4", "Maven multi-módulo", "Angular 21", "Nx", "TypeScript", "GitHub Packages", "GitHub Actions", "Vite"],
+      "caracteristicas": [
+        "Suite modular: 10 librerías backend (Spring Boot) y 14 frontend (Angular) para auth, usuarios, e-commerce, CMS, reservas y más",
+        "Publicadas y versionadas en GitHub Packages (Maven y npm)",
+        "Monorepo Nx que organiza y construye las librerías del frontend",
+        "Publicación continua con GitHub Actions",
+        "Design system con tema configurable de 4 colores y modo oscuro"
+      ],
+      "problema": "Cada vez que empezaba un proyecto nuevo reescribía lo mismo: autenticación, usuarios, e-commerce, CMS, emails... Decidí extraer todo ese trabajo repetido en librerías versionadas y publicadas, para montar la base de cualquier aplicación en horas en lugar de días.",
+      "aprendizajes": "Diseñar código pensado para que lo consuman otros proyectos (y mi yo del futuro) me obligó a cuidar el versionado semántico, la retrocompatibilidad y la documentación de cada módulo. Montar el CI/CD de publicación en GitHub Packages y un monorepo Nx fue lo más cercano al trabajo de producto que he hecho.",
+      "fecha": "2026",
+      "estado": "Publicadas y en mantenimiento"
+    },
+    {
+      "slug": "portfolio",
+      "permisos": "777",
+      "nombre": "Portfolio",
+      "tipo": "Full Stack",
+      "descripcion": "Código fuente de esta web: frontend Angular con concepto de terminal Linux y API propia en Spring Boot",
+      "imagen": "/proyectos/portfolio.png",
+      "repositorios": [
+        { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/portfolio" },
+        { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/portfolio-back" }
+      ],
+      "demo": "https://www.codeadrianmc.dev",
+      "tecnologias": ["Angular 19", "TypeScript", "Tailwind", "Transloco", "Signals", "Java 21", "Spring Boot 3", "Docker", "Render"],
+      "caracteristicas": [
+        "Tema de terminal interactiva con comandos (help, snake, sudo hire)",
+        "Construido con signals y el nuevo control flow de Angular",
+        "API REST en Spring Boot que sirve los proyectos, experiencia y formación por idioma",
+        "Internacionalización español/inglés (Transloco en el front, parámetro ?lang= en la API)",
+        "Tema claro/oscuro y diseño totalmente responsive",
+        "Frontend en Vercel y backend contenedorizado con Docker en Render"
+      ],
+      "problema": "Mi portfolio anterior tenía dos años y ya no reflejaba mi nivel. Quería rehacerlo con una identidad memorable —un concepto de terminal Linux interactiva— y aprovecharlo para enseñar también backend, sirviendo los datos desde una API propia en Spring Boot.",
+      "aprendizajes": "Reforcé signals y el nuevo control flow de Angular, monté la i18n y el cambio de tema desde cero, y construí la API que alimenta la web con despliegue en Render. El mayor aprendizaje fue de criterio: equilibrar un concepto vistoso (la terminal, el juego, los comandos) con una navegación clara y accesible.",
+      "fecha": "Junio 2026",
+      "estado": "En evolución"
+    },
+    {
+      "slug": "keycloud",
+      "permisos": "555",
+      "nombre": "KeyCloud",
+      "tipo": "Full Stack",
+      "descripcion": "Gestor de contraseñas seguro full-stack: cliente Angular y API en Spring Boot",
+      "imagen": "/proyectos/keycloud.png",
+      "repositorios": [
+        { "etiqueta": "Frontend", "url": "https://github.com/AdrianMartinCano/keycloud-front" },
+        { "etiqueta": "Backend", "url": "https://github.com/AdrianMartinCano/keycloud" }
+      ],
+      "tecnologias": ["Angular 16", "TypeScript", "Java", "Spring Boot", "JPA", "MySQL", "Docker", "Maven"],
+      "caracteristicas": [
+        "Encriptación AES de las contraseñas con CryptoJS",
+        "Autenticación y gestión de usuarios",
+        "CRUD de contraseñas sobre API REST",
+        "Base de datos MySQL",
+        "Backend contenedorizado con Docker"
+      ],
+      "problema": "Quería un gestor de contraseñas propio en el que entender de primera mano cómo cifrar datos sensibles en el cliente antes de guardarlos, y construir el ciclo completo cliente-servidor con autenticación.",
+      "aprendizajes": "Fue mi primer proyecto full-stack serio con Angular y Spring Boot. Hoy veo claro su punto débil: la clave de cifrado es fija y compartida. Lo reharía con claves derivadas por usuario y una gestión de secretos real, y añadiría tests de integración a la API.",
+      "fecha": "Enero 2025",
+      "estado": "Terminado"
+    },
+    {
+      "slug": "gas-path",
+      "permisos": "555",
+      "nombre": "Gas-Path",
+      "tipo": "Móvil",
+      "descripcion": "Buscador de gasolineras según tu ubicación (proyecto de fin de grado)",
+      "imagen": "/proyectos/gas-path.png",
+      "repositorios": [
+        { "etiqueta": "Repositorio", "url": "https://github.com/AdrianMartinCano/Gas-Path" }
+      ],
+      "tecnologias": ["Kotlin", "Jetpack Compose", "Firebase", "Google Maps API"],
+      "caracteristicas": [
+        "Arquitectura MVVM",
+        "Integración con Google Maps API",
+        "Autenticación con Firebase"
+      ],
+      "problema": "Era mi proyecto de fin de grado (DAM, 2024). Quería resolver algo cotidiano —encontrar la gasolinera más barata cerca de ti— y de paso aprender desarrollo móvil nativo moderno con Kotlin y Jetpack Compose.",
+      "aprendizajes": "Mi primera app móvil completa: aprendí Jetpack Compose, la arquitectura MVVM y a integrar servicios externos (Google Maps, Firebase). Hoy cuidaría más la gestión de estado y cachearía las llamadas a la API de precios para reducir el consumo de datos.",
+      "fecha": "Junio 2024",
+      "estado": "Terminado"
+    }
+  ],
+  "experiencia": [
+    {
+      "puesto": "Desarrollador Full Stack",
+      "empresa": "Talan (cliente: BNP Paribas)",
+      "fechaInicio": "04-2025",
+      "fechaFin": "Actualidad",
+      "tareas": [
+        "Desarrollo de aplicaciones para procesos críticos de banca con Java, Spring Boot, Spring Batch y Angular.",
+        "Microservicios y ciclo completo: análisis técnico, nuevas funcionalidades e integración/despliegue continuo con Jenkins.",
+        "Control de versiones con Bitbucket, gestión ágil en Jira (Scrum/Kanban) y mantenimiento de bases de datos con SQL Developer.",
+        "Buenas prácticas: principios SOLID, testing automatizado, código limpio y arquitectura mantenible."
+      ]
+    },
+    {
+      "puesto": "Desarrollador Full Stack",
+      "empresa": "Visual Presencia",
+      "fechaInicio": "07-2024",
+      "fechaFin": "12-2024",
+      "tareas": [
+        "Desarrollo de la nueva aplicación del cliente con HTML, CSS, JS, PHP, jQuery y .NET.",
+        "Diseño y mantenimiento de la base de datos para el nuevo proyecto (SQL).",
+        "Desarrollo y mejora del CRM de la empresa con VB.NET."
+      ]
+    },
+    {
+      "puesto": "Desarrollador Salesforce",
+      "empresa": "Cloudtree Solutions",
+      "fechaInicio": "04-2024",
+      "fechaFin": "06-2024",
+      "tareas": [
+        "Prácticas de formación profesional en desarrollo de Salesforce.",
+        "Desarrollo de backend y frontend, utilizando tecnologías como Lightning Web Components y Apex.",
+        "Desarrollo de un bot para la automatización de procesos."
+      ]
+    },
+    {
+      "puesto": "Programador",
+      "empresa": "Euroconsult NT",
+      "fechaInicio": "12-2022",
+      "fechaFin": "02-2024",
+      "tareas": [
+        "Desarrollo y optimización del software de la empresa con VB.NET.",
+        "Mantenimiento y gestión de bases de datos en SQL.",
+        "Desarrollo de aplicaciones multipropósito en Java."
+      ]
+    }
+  ],
+  "formacion": [
+    {
+      "grado": "Desarrollo de Aplicaciones Multiplataforma (DAM)",
+      "centro": "Escolapios de Getafe",
+      "fechaInicio": "2022",
+      "fechaFin": "2024",
+      "competencias": "Grado superior de desarrollo full-stack y multiplataforma: programación orientada a objetos con Java, acceso a datos con SQL e Hibernate, y desarrollo de aplicaciones móviles. Proyecto de fin de grado: Gas-Path, app Android nativa con Kotlin y Jetpack Compose."
+    },
+    {
+      "grado": "Fundamentos y práctica de Amazon Web Services (AWS)",
+      "centro": "Fundación Estatal para la Formación en el Empleo (FUNDAE)",
+      "fechaInicio": "11-2025",
+      "fechaFin": "11-2025",
+      "competencias": "Fundamentos de Cloud Computing en AWS: servicios básicos, seguridad e identidad (IAM), bases de datos, herramientas de administración (Auto Scaling, CloudWatch, Elastic Load Balancing, Trusted Advisor) y prácticas con Hands-on Labs."
+    },
+    {
+      "grado": "Ingeniería Informática",
+      "centro": "Universidad Nacional de Educación a Distancia (UNED)",
+      "fechaInicio": "2020",
+      "fechaFin": "En pausa",
+      "competencias": "Formación universitaria en programación avanzada, algoritmos y estructuras de datos, y sistemas operativos. Con previsión de retomarla para completar el grado."
+    }
+  ]
+}
