@@ -4,6 +4,8 @@ import com.adrianmartincano.portfolio.DTO.ContactoForm;
 import com.adrianmartincano.portfolio.services.EmailService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +24,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @RequestMapping("/api")
 public class ContactoController {
 
+    private static final Logger log = LoggerFactory.getLogger(ContactoController.class);
+
     private static final int MAX_ENVIOS = 3;
     private static final long VENTANA_MINUTOS = 10;
 
@@ -37,15 +41,22 @@ public class ContactoController {
         // Honeypot: un humano nunca rellena este campo. Si viene relleno, respondemos
         // 200 sin enviar nada para no darle pistas al bot.
         if (form.website() != null && !form.website().isBlank()) {
+            log.info("Honeypot activado (posible bot), descartando envío sin notificar");
             return ResponseEntity.ok().build();
         }
 
         if (!permitido(request.getRemoteAddr())) {
+            log.warn("Rate limit superado para IP {}", request.getRemoteAddr());
             return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
         }
 
-        emailService.enviarContacto(form);
-        return ResponseEntity.ok().build();
+        try {
+            emailService.enviarContacto(form);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            log.error("Fallo al enviar el correo de contacto", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     private boolean permitido(String ip) {

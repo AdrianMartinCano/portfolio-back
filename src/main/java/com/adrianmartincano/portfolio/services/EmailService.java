@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientResponseException;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -52,26 +53,37 @@ public class EmailService {
     private String remitenteNombre;
 
     public void enviarContacto(ContactoForm form) {
+        log.info("Procesando contacto de '{}' <{}>", form.nombre(), form.email());
+
         // Notificación para mí: es la importante, si falla que propague el error.
         enviar(notificacion(form));
+        log.info("Notificación enviada a {}", destino);
 
         // Confirmación para el visitante: best-effort. Si falla, lo registramos
         // pero no rompemos la petición (la notificación ya se envió).
         try {
             enviar(confirmacion(form));
+            log.info("Confirmación enviada a {}", form.email());
         } catch (Exception e) {
             log.warn("No se pudo enviar la confirmación a {}: {}", form.email(), e.getMessage());
         }
     }
 
     private void enviar(Map<String, Object> cuerpo) {
-        http.post()
-                .uri("https://api.resend.com/emails")
-                .header("Authorization", "Bearer " + apiKey)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(cuerpo)
-                .retrieve()
-                .toBodilessEntity();
+        try {
+            http.post()
+                    .uri("https://api.resend.com/emails")
+                    .header("Authorization", "Bearer " + apiKey)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(cuerpo)
+                    .retrieve()
+                    .toBodilessEntity();
+        } catch (RestClientResponseException e) {
+            // Resend explica el motivo en el cuerpo de la respuesta (dominio sin
+            // verificar, 'from' inválido, API key incorrecta, límite alcanzado...).
+            log.error("Resend rechazó el envío [HTTP {}]: {}", e.getStatusCode().value(), e.getResponseBodyAsString());
+            throw e;
+        }
     }
 
     // Correo que recibo yo cuando alguien usa el formulario.
