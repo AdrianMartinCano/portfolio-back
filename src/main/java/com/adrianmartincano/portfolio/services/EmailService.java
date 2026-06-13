@@ -53,13 +53,7 @@ public class EmailService {
 
     public void enviarContacto(ContactoForm form) {
         // Notificación para mí: es la importante, si falla que propague el error.
-        enviar(Map.of(
-                "from", "Portfolio <" + remitenteEmail + ">",
-                "to", List.of(destino),
-                "reply_to", form.email(),
-                "subject", "Nuevo contacto de " + form.nombre(),
-                "text", form.mensaje()
-        ));
+        enviar(notificacion(form));
 
         // Confirmación para el visitante: best-effort. Si falla, lo registramos
         // pero no rompemos la petición (la notificación ya se envió).
@@ -80,14 +74,47 @@ public class EmailService {
                 .toBodilessEntity();
     }
 
+    // Correo que recibo yo cuando alguien usa el formulario.
+    private Map<String, Object> notificacion(ContactoForm form) {
+        String fecha = ahora();
+
+        String filas =
+                  filaNeo("Nombre", esc(form.nombre()))
+                + filaNeo("Email", esc(form.email()))
+                + filaNeo("Fecha", fecha);
+
+        String cuerpo = ficha("cat contacto.log", filas)
+                + "<div style=\"margin-bottom:16px;\">" + PROMPT
+                + " <span style=\"color:#e6edf3;\">cat mensaje.txt</span></div>"
+                + "<div style=\"color:#e6edf3; white-space:pre-wrap; word-break:break-word;\">"
+                + esc(form.mensaje()) + "</div>";
+
+        String html = envolver("es", cuerpo, "// responde a este correo para contestar al remitente");
+
+        // Texto plano de respaldo.
+        String text = "Nombre: " + form.nombre() + "\n"
+                + "Email: " + form.email() + "\n"
+                + "Fecha: " + fecha + "\n\n"
+                + form.mensaje();
+
+        return Map.of(
+                "from", "Portfolio Contacto <" + remitenteEmail + ">",
+                "to", List.of(destino),
+                "reply_to", form.email(),
+                "subject", "Nuevo contacto de " + form.nombre(),
+                "text", text,
+                "html", html
+        );
+    }
+
+    // Confirmación que recibe el visitante.
     private Map<String, Object> confirmacion(ContactoForm form) {
         boolean en = "en".equalsIgnoreCase(form.lang());
-        String nombre = form.nombre();
 
         String subject = en ? "Message received" : "He recibido tu mensaje";
         String estado = en ? "message received successfully" : "mensaje recibido correctamente";
         String saludo = en ? "Hi " : "Hola ";
-        String cuerpo = en
+        String cuerpoTexto = en
                 ? "I've received your message and will reply as soon as possible. "
                         + "Thanks for reaching out."
                 : "He recibido tu mensaje y te responderé lo antes posible. "
@@ -96,27 +123,46 @@ public class EmailService {
                 ? "// this is an automated message, no need to reply"
                 : "// este es un mensaje automático, no hace falta responder";
 
-        // Datos contextuales para el panel "neofetch" (resumen del correo).
-        String remitente = esc(form.email());
-        String fecha = ZonedDateTime.now(ZoneId.of("Europe/Madrid"))
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        String fecha = ahora();
+        String html = htmlConfirmacion(en, subject, esc(form.email()), fecha,
+                estado, saludo, esc(form.nombre()), cuerpoTexto, pie, esc(remitenteNombre));
 
         // Texto plano de respaldo para clientes que no renderizan HTML.
-        String text = saludo + nombre + ",\n\n" + cuerpo + "\n\n— " + remitenteNombre;
+        String text = saludo + form.nombre() + ",\n\n" + cuerpoTexto + "\n\n— " + remitenteNombre;
 
         return Map.of(
                 "from", remitenteNombre + " <" + remitenteEmail + ">",
                 "to", List.of(form.email()),
                 "subject", subject,
                 "text", text,
-                "html", htmlTerminal(estado, saludo, esc(nombre), cuerpo, pie, en, subject, remitente, fecha, esc(remitenteNombre))
+                "html", html
         );
     }
 
-    // Correo con aspecto de ventana de terminal, a juego con la web (paleta GitHub dark).
-    private String htmlTerminal(String estado, String saludo, String nombre,
-                                String cuerpo, String pie, boolean en,
-                                String asunto, String remitente, String fecha, String firma) {
+    // Cuerpo HTML de la confirmación (sesión de terminal: neofetch + mail --status).
+    private String htmlConfirmacion(boolean en, String asunto, String remitente, String fecha,
+                                    String estado, String saludo, String nombre,
+                                    String cuerpoTexto, String pie, String firma) {
+        String filas =
+                  filaNeo(en ? "Subject" : "Asunto", asunto)
+                + filaNeo(en ? "From" : "De", remitente)
+                + filaNeo(en ? "Date" : "Fecha", fecha);
+
+        String cuerpo = ficha("neofetch", filas)
+                + "<div style=\"margin-bottom:16px;\">" + PROMPT
+                + " <span style=\"color:#e6edf3;\">mail --status</span></div>"
+                + "<div style=\"color:#3fb950; margin-bottom:18px;\">&#10003; " + estado + "</div>"
+                + "<div style=\"color:#e6edf3; margin-bottom:14px;\"><span style=\"color:#3fb950;\">&gt;</span> "
+                + saludo + nombre + ",</div>"
+                + "<div style=\"color:#e6edf3; margin-bottom:18px;\">" + cuerpoTexto + "</div>"
+                + "<div style=\"color:#8b949e; margin-bottom:18px;\">&#8212; " + firma + "</div>"
+                + "<div>" + PROMPT + " <span style=\"color:#e6edf3;\">_</span></div>";
+
+        return envolver(en ? "en" : "es", cuerpo, pie);
+    }
+
+    // Ventana de terminal (paleta GitHub dark): barra de título, cuerpo y pie.
+    private String envolver(String lang, String cuerpo, String pie) {
         return ("""
                 <!DOCTYPE html>
                 <html lang="%LANG%">
@@ -137,15 +183,7 @@ public class EmailService {
                           </td>
                         </tr>
                         <tr>
-                          <td style="background-color:#0d1117; padding:22px; font-size:14px; line-height:1.7;">
-                            %NEOFETCH%
-                            <div style="margin-bottom:16px;">%PROMPT% <span style="color:#e6edf3;">mail --status</span></div>
-                            <div style="color:#3fb950; margin-bottom:18px;">&#10003; %ESTADO%</div>
-                            <div style="color:#e6edf3; margin-bottom:14px;"><span style="color:#3fb950;">&gt;</span> %SALUDO%%NOMBRE%,</div>
-                            <div style="color:#e6edf3; margin-bottom:18px;">%CUERPO%</div>
-                            <div style="color:#8b949e; margin-bottom:18px;">&#8212; %FIRMA%</div>
-                            <div>%PROMPT% <span style="color:#e6edf3;">_</span></div>
-                          </td>
+                          <td style="background-color:#0d1117; padding:22px; font-size:14px; line-height:1.7;">%CUERPO%</td>
                         </tr>
                         <tr>
                           <td style="background-color:#161b22; padding:10px 14px; border-top:1px solid #30363d; color:#8b949e; font-size:11px;">%PIE% &nbsp;&#183;&nbsp; <a href="https://www.codeadrianmc.dev" style="color:#58a6ff; text-decoration:none;">www.codeadrianmc.dev</a></td>
@@ -156,26 +194,15 @@ public class EmailService {
                 </body>
                 </html>
                 """)
-                .replace("%LANG%", en ? "en" : "es")
-                .replace("%NEOFETCH%", neofetch(en, asunto, remitente, fecha))
-                .replace("%PROMPT%", PROMPT)
-                .replace("%ESTADO%", estado)
-                .replace("%SALUDO%", saludo)
-                .replace("%NOMBRE%", nombre)
-                .replace("%CUERPO%", cuerpo)
-                .replace("%FIRMA%", firma)
-                .replace("%PIE%", pie);
+                .replace("%LANG%", lang)
+                .replace("%PIE%", pie)
+                .replace("%CUERPO%", cuerpo);
     }
 
-    // Bloque neofetch: comando + arte ASCII (izquierda) y resumen del correo (derecha).
-    private String neofetch(boolean en, String asunto, String remitente, String fecha) {
-        String info =
-                  filaNeo(en ? "Subject" : "Asunto", asunto)
-                + filaNeo(en ? "From" : "De", remitente)
-                + filaNeo(en ? "Date" : "Fecha", fecha);
-
+    // Ficha estilo neofetch: línea de comando + arte ASCII (izq.) y tabla de datos (der.).
+    private String ficha(String comando, String filas) {
         return "<div style=\"margin-bottom:14px;\">" + PROMPT
-                + " <span style=\"color:#e6edf3;\">neofetch</span></div>"
+                + " <span style=\"color:#e6edf3;\">" + comando + "</span></div>"
                 + "<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin-bottom:22px;\">"
                 + "<tr>"
                 + "<td valign=\"top\" style=\"padding-right:22px;\">"
@@ -184,7 +211,7 @@ public class EmailService {
                 + "</td>"
                 + "<td valign=\"top\">"
                 + "<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:13px;\">"
-                + info + "</table>"
+                + filas + "</table>"
                 + "</td>"
                 + "</tr>"
                 + "</table>";
@@ -197,7 +224,12 @@ public class EmailService {
                 + "</tr>";
     }
 
-    // Escapa los caracteres con significado en HTML para que el nombre del
+    private static String ahora() {
+        return ZonedDateTime.now(ZoneId.of("Europe/Madrid"))
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    // Escapa los caracteres con significado en HTML para que el contenido del
     // visitante no pueda romper la plantilla ni inyectar marcado.
     private static String esc(String s) {
         if (s == null) return "";
