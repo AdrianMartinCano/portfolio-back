@@ -85,7 +85,7 @@
         { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/portfolio-back" }
       ],
       "demo": "https://www.codeadrianmc.dev",
-      "tecnologias": ["Angular 19", "TypeScript", "Tailwind", "Transloco", "Signals", "Java 21", "Spring Boot 3", "Docker", "Render"],
+      "tecnologias": ["Angular 21", "TypeScript", "Tailwind", "Transloco", "Signals", "Java 21", "Spring Boot 3", "Docker", "Render"],
       "caracteristicas": [
         "Interactive terminal theme with commands (help, snake, sudo hire)",
         "Built with signals and Angular's new control flow",
