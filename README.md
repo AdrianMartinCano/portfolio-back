@@ -63,6 +63,8 @@ src/main/resources/
 |---|---|
 | `RESEND_API_KEY` | API key de [Resend](https://resend.com) para el envío de correos |
 | `CONTACTO_DESTINO` | Email donde llegan los mensajes del formulario |
+| `CONTACTO_REMITENTE_EMAIL` | Email remitente de los correos (debe ser de un dominio verificado en Resend) |
+| `CONTACTO_REMITENTE_NOMBRE` | Nombre que se muestra como remitente de la confirmación (por defecto `Portfolio`) |
 | `PORT` | Puerto del servidor (por defecto `8080`) |
 
 Definidas en `application.properties` como placeholders (`${RESEND_API_KEY:}`…). **No hay secretos en el repo**: hay que proveerlas por entorno (en local o en el panel de Render).
@@ -73,8 +75,10 @@ Definidas en `application.properties` como placeholders (`${RESEND_API_KEY:}`…
 
 ```bash
 # Variables de entorno necesarias para el contacto (en local)
-export RESEND_API_KEY=...           # Windows PowerShell: $env:RESEND_API_KEY="..."
+export RESEND_API_KEY=...               # Windows PowerShell: $env:RESEND_API_KEY="..."
 export CONTACTO_DESTINO=...
+export CONTACTO_REMITENTE_EMAIL=...     # dirección de un dominio verificado en Resend
+export CONTACTO_REMITENTE_NOMBRE=...    # nombre que se muestra como remitente
 
 ./mvnw spring-boot:run              # → http://localhost:8080
 ```
