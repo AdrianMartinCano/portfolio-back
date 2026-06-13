@@ -9,8 +9,17 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+        // allowedOriginPatterns (no allowedOrigins) para poder usar comodines.
+        // El patrón de Vercel se acota a MI team (adrianmartincanos-projects):
+        // nadie más puede desplegar bajo ese slug, así que no abre la API a
+        // cualquier app de *.vercel.app.
         registry.addMapping("/api/**")
-                .allowedOrigins("https://www.codeadrianmc.dev", "http://localhost:4200")
+                .allowedOriginPatterns(
+                        "https://www.codeadrianmc.dev",
+                        "https://codeadrianmc.dev",
+                        "https://*-adrianmartincanos-projects.vercel.app", // previews de mi cuenta
+                        "http://localhost:4200"
+                )
                 .allowedMethods("GET", "POST");
     }
 }
