@@ -6,7 +6,7 @@
       "nombre": "WoW Auction Analyzer",
       "tipo": "Full Stack",
       "descripcion": "Full-stack platform that analyzes the World of Warcraft auction house, detects market opportunities and notifies via Discord in real time",
-      "imagen": "/proyectos/wow-analyzer.png",
+      "imagen": "/proyectos/wow-analyzer.svg",
       "repositorios": [
         { "etiqueta": "Repository", "url": "https://github.com/AdrianMartinCano/wow-analizer" }
       ],
@@ -22,7 +22,7 @@
       ],
       "problema": "My friends and I were spending hours farming items to sell on the auction house instead of enjoying the raids and dungeons, which is the fun part of the game. The alternative was buying gold with real money, but not everyone could afford it. So I built a platform that watches the market and tells us what to buy and sell to make gold efficiently, without grinding for hours.",
       "aprendizajes": "It's my largest project: 8 months of development, ~15,000 lines and a multi-module architecture. I learned to design a data pipeline with Spring Batch, integrate OAuth2 with external APIs (Blizzard and Discord) and orchestrate several services. The next step is widening test coverage over the analysis logic and adding metrics to the batch.",
-      "fecha": "2025 - 2026",
+      "fecha": "June 2025 - April 2026",
       "estado": "In production"
     },
     {
@@ -31,7 +31,7 @@
       "nombre": "Artesanos del Torno",
       "tipo": "Full Stack",
       "descripcion": "Official live website for a national craftsmen association: admin panel, Stripe e-commerce and automated newsletter",
-      "imagen": "/proyectos/artesanos.png",
+      "imagen": "/proyectos/artesanos.svg",
       "repositorios": [
         { "etiqueta": "Repository", "url": "https://github.com/AdrianMartinCano/artesanosdeltorno" }
       ],
@@ -46,7 +46,7 @@
       ],
       "problema": "A national craftsmen association needed a professional website they could manage themselves —events, craftsmen, shop and newsletter— without calling a developer for every change. The challenge was giving them full autonomy through a complete admin panel.",
       "aprendizajes": "My first production project with a real client: I learned that reliability and ease of use for whoever administers it matter more than any flashy tech. I built it in vanilla JS and PHP on purpose, for deployment simplicity; today I'd structure the API with a framework and add automated tests.",
-      "fecha": "2026",
+      "fecha": "January 2026 - February 2026",
       "estado": "In production"
     },
     {
@@ -55,7 +55,7 @@
       "nombre": "Shared library ecosystem",
       "tipo": "Full Stack",
       "descripcion": "Suite of published reusable libraries (Spring Boot + Angular) to build professional web apps in a fraction of the time",
-      "imagen": "/proyectos/librerias.png",
+      "imagen": "/proyectos/librerias.svg",
       "repositorios": [
         { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/libreriasBackend" },
         { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/librerias-frontend" }
@@ -70,7 +70,7 @@
       ],
       "problema": "Every time I started a new project I rewrote the same things: auth, users, e-commerce, CMS, emails... I decided to extract all that repeated work into versioned, published libraries, to set up the foundation of any app in hours instead of days.",
       "aprendizajes": "Designing code meant to be consumed by other projects (and my future self) forced me to care about semantic versioning, backward compatibility and documenting each module. Setting up the publish CI/CD on GitHub Packages and an Nx monorepo was the closest thing to product work I've done.",
-      "fecha": "2026",
+      "fecha": "February 2026 - June 2026",
       "estado": "Published and maintained"
     },
     {
@@ -79,7 +79,7 @@
       "nombre": "Portfolio",
       "tipo": "Full Stack",
       "descripcion": "Source code of this website: an Angular frontend with a Linux terminal concept and its own Spring Boot API",
-      "imagen": "/proyectos/portfolio.png",
+      "imagen": "/proyectos/portfolio.svg",
       "repositorios": [
         { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/portfolio" },
         { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/portfolio-back" }
@@ -96,7 +96,7 @@
       ],
       "problema": "My previous portfolio was two years old and no longer reflected my level. I wanted to rebuild it with a memorable identity —an interactive Linux terminal concept— and use it to show backend too, serving the data from my own Spring Boot API.",
       "aprendizajes": "I deepened signals and Angular's new control flow, built i18n and theme switching from scratch, and wrote the API that feeds the site with a Render deployment. The biggest lesson was judgment: balancing a flashy concept (the terminal, the game, the commands) with clear, accessible navigation.",
-      "fecha": "June 2026",
+      "fecha": "September 2023 - Present",
       "estado": "Evolving"
     },
     {
@@ -120,7 +120,7 @@
       ],
       "problema": "I wanted my own password manager to understand first-hand how to encrypt sensitive data on the client before storing it, and to build the full client-server cycle with authentication.",
       "aprendizajes": "It was my first serious full-stack project with Angular and Spring Boot. Today I clearly see its weak point: the encryption key is fixed and shared. I'd rebuild it with per-user derived keys and real secret management, and add integration tests to the API.",
-      "fecha": "January 2025",
+      "fecha": "December 2024 - January 2025",
       "estado": "Finished"
     },
     {
@@ -141,7 +141,7 @@
       ],
       "problema": "It was my final degree project (DAM, 2024). I wanted to solve something everyday —finding the cheapest petrol station near you— and learn modern native mobile development with Kotlin and Jetpack Compose along the way.",
       "aprendizajes": "My first complete mobile app: I learned Jetpack Compose, MVVM architecture and integrating external services (Google Maps, Firebase). Today I'd take more care with state management and cache the price API calls to reduce data usage.",
-      "fecha": "June 2024",
+      "fecha": "March 2024 - June 2024",
       "estado": "Finished"
     }
   ],

@@ -6,7 +6,7 @@
       "nombre": "WoW Auction Analyzer",
       "tipo": "Full Stack",
       "descripcion": "Plataforma full-stack que analiza la casa de subastas de World of Warcraft, detecta oportunidades de mercado y avisa por Discord en tiempo real",
-      "imagen": "/proyectos/wow-analyzer.png",
+      "imagen": "/proyectos/wow-analyzer.svg",
       "repositorios": [
         { "etiqueta": "Repositorio", "url": "https://github.com/AdrianMartinCano/wow-analizer" }
       ],
@@ -22,7 +22,7 @@
       ],
       "problema": "Mis amigos y yo nos pasábamos horas farmeando items para venderlos en la casa de subastas en lugar de disfrutar de las raids y mazmorras, que es lo divertido del juego. La alternativa era comprar oro con dinero real, pero no todos podían permitírselo. Así que construí una plataforma que vigila el mercado y nos avisa de qué comprar y vender para hacer oro de forma eficiente, sin perder horas farmeando.",
       "aprendizajes": "Es mi proyecto más grande: 8 meses de desarrollo, ~15.000 líneas y arquitectura multi-módulo. Aprendí a diseñar un pipeline de datos con Spring Batch, a integrar OAuth2 con APIs externas (Blizzard y Discord) y a orquestar varios servicios. El siguiente paso es ampliar la cobertura de tests sobre la lógica de análisis y añadir métricas al batch.",
-      "fecha": "2025 - 2026",
+      "fecha": "Junio 2025 - Abril 2026",
       "estado": "En producción"
     },
     {
@@ -31,7 +31,7 @@
       "nombre": "Artesanos del Torno",
       "tipo": "Full Stack",
       "descripcion": "Web oficial en producción de una asociación nacional de artesanos: panel de administración, e-commerce con Stripe y newsletter automática",
-      "imagen": "/proyectos/artesanos.png",
+      "imagen": "/proyectos/artesanos.svg",
       "repositorios": [
         { "etiqueta": "Repositorio", "url": "https://github.com/AdrianMartinCano/artesanosdeltorno" }
       ],
@@ -46,7 +46,7 @@
       ],
       "problema": "Una asociación nacional de artesanos necesitaba una web profesional que pudieran gestionar ellos mismos —eventos, artesanos, tienda y newsletter— sin llamar a un desarrollador para cada cambio. El reto era darles autonomía total con un panel de administración completo.",
       "aprendizajes": "Mi primer proyecto en producción con un cliente real: aprendí que la fiabilidad y la facilidad de uso para quien lo administra importan más que cualquier tecnología vistosa. Lo construí en Vanilla JS y PHP a propósito, por simplicidad de despliegue; hoy estructuraría la API con un framework y le añadiría tests automatizados.",
-      "fecha": "2026",
+      "fecha": "Enero 2026 - Febrero 2026",
       "estado": "En producción"
     },
     {
@@ -55,7 +55,7 @@
       "nombre": "Ecosistema de librerías compartidas",
       "tipo": "Full Stack",
       "descripcion": "Suite de librerías reutilizables publicadas (Spring Boot + Angular) para construir aplicaciones web profesionales en una fracción del tiempo",
-      "imagen": "/proyectos/librerias.png",
+      "imagen": "/proyectos/librerias.svg",
       "repositorios": [
         { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/libreriasBackend" },
         { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/librerias-frontend" }
@@ -70,7 +70,7 @@
       ],
       "problema": "Cada vez que empezaba un proyecto nuevo reescribía lo mismo: autenticación, usuarios, e-commerce, CMS, emails... Decidí extraer todo ese trabajo repetido en librerías versionadas y publicadas, para montar la base de cualquier aplicación en horas en lugar de días.",
       "aprendizajes": "Diseñar código pensado para que lo consuman otros proyectos (y mi yo del futuro) me obligó a cuidar el versionado semántico, la retrocompatibilidad y la documentación de cada módulo. Montar el CI/CD de publicación en GitHub Packages y un monorepo Nx fue lo más cercano al trabajo de producto que he hecho.",
-      "fecha": "2026",
+      "fecha": "Febrero 2026 - Junio 2026",
       "estado": "Publicadas y en mantenimiento"
     },
     {
@@ -79,7 +79,7 @@
       "nombre": "Portfolio",
       "tipo": "Full Stack",
       "descripcion": "Código fuente de esta web: frontend Angular con concepto de terminal Linux y API propia en Spring Boot",
-      "imagen": "/proyectos/portfolio.png",
+      "imagen": "/proyectos/portfolio.svg",
       "repositorios": [
         { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/portfolio" },
         { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/portfolio-back" }
@@ -96,7 +96,7 @@
       ],
       "problema": "Mi portfolio anterior tenía dos años y ya no reflejaba mi nivel. Quería rehacerlo con una identidad memorable —un concepto de terminal Linux interactiva— y aprovecharlo para enseñar también backend, sirviendo los datos desde una API propia en Spring Boot.",
       "aprendizajes": "Reforcé signals y el nuevo control flow de Angular, monté la i18n y el cambio de tema desde cero, y construí la API que alimenta la web con despliegue en Render. El mayor aprendizaje fue de criterio: equilibrar un concepto vistoso (la terminal, el juego, los comandos) con una navegación clara y accesible.",
-      "fecha": "Junio 2026",
+      "fecha": "Septiembre 2023 - Presente",
       "estado": "En evolución"
     },
     {
@@ -120,7 +120,7 @@
       ],
       "problema": "Quería un gestor de contraseñas propio en el que entender de primera mano cómo cifrar datos sensibles en el cliente antes de guardarlos, y construir el ciclo completo cliente-servidor con autenticación.",
       "aprendizajes": "Fue mi primer proyecto full-stack serio con Angular y Spring Boot. Hoy veo claro su punto débil: la clave de cifrado es fija y compartida. Lo reharía con claves derivadas por usuario y una gestión de secretos real, y añadiría tests de integración a la API.",
-      "fecha": "Enero 2025",
+      "fecha": "Diciembre 2024 - Enero 2025",
       "estado": "Terminado"
     },
     {
@@ -141,7 +141,7 @@
       ],
       "problema": "Era mi proyecto de fin de grado (DAM, 2024). Quería resolver algo cotidiano —encontrar la gasolinera más barata cerca de ti— y de paso aprender desarrollo móvil nativo moderno con Kotlin y Jetpack Compose.",
       "aprendizajes": "Mi primera app móvil completa: aprendí Jetpack Compose, la arquitectura MVVM y a integrar servicios externos (Google Maps, Firebase). Hoy cuidaría más la gestión de estado y cachearía las llamadas a la API de precios para reducir el consumo de datos.",
-      "fecha": "Junio 2024",
+      "fecha": "Marzo 2024 - Junio 2024",
       "estado": "Terminado"
     }
   ],
