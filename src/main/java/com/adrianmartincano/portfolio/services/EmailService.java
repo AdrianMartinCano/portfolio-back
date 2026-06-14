@@ -20,8 +20,11 @@ public class EmailService {
 
     private static final Logger log = LoggerFactory.getLogger(EmailService.class);
 
-    // Arte ASCII "ADRIAN" (figlet), el mismo que el neofetch de la web. Texto
-    // puro: se renderiza siempre, sin imágenes ni SVG. El '<' va escapado.
+    // Arte ASCII "ADRIAN" (figlet de barras). La web usa un wordmark en bloque
+    // (ANSI Shadow), pero en email los caracteres de bloque/box-drawing rompen
+    // en algunos clientes (Outlook), así que aquí se mantiene el figlet de barras
+    // —texto puro, se renderiza siempre— recoloreado al magenta de la firma.
+    // El '<' va escapado.
     private static final String ART = String.join("\n",
             "    _     ____   ____   ___     _     _   _",
             "   / \\   |  _ \\ |  _ \\ |_ _|   / \\   | \\ | |",
@@ -31,10 +34,10 @@ public class EmailService {
 
     // Prompt reutilizable: adrian@portfolio:~$
     private static final String PROMPT =
-            "<span style=\"color:#3fb950;\">adrian@portfolio</span>"
-            + "<span style=\"color:#8b949e;\">:</span>"
-            + "<span style=\"color:#58a6ff;\">~</span>"
-            + "<span style=\"color:#8b949e;\">$</span>";
+            "<span style=\"color:#9ece6a;\">adrian@portfolio</span>"
+            + "<span style=\"color:#828bb8;\">:</span>"
+            + "<span style=\"color:#7aa2f7;\">~</span>"
+            + "<span style=\"color:#828bb8;\">$</span>";
 
     private final RestClient http = RestClient.create();
 
@@ -97,8 +100,8 @@ public class EmailService {
 
         String cuerpo = ficha("cat contacto.log", filas)
                 + "<div style=\"margin-bottom:16px;\">" + PROMPT
-                + " <span style=\"color:#e6edf3;\">cat mensaje.txt</span></div>"
-                + "<div style=\"color:#e6edf3; white-space:pre-wrap; word-break:break-word;\">"
+                + " <span style=\"color:#c0caf5;\">cat mensaje.txt</span></div>"
+                + "<div style=\"color:#c0caf5; white-space:pre-wrap; word-break:break-word;\">"
                 + esc(form.mensaje()) + "</div>";
 
         String html = envolver("es", cuerpo, "// responde a este correo para contestar al remitente");
@@ -162,18 +165,18 @@ public class EmailService {
 
         String cuerpo = ficha("neofetch", filas)
                 + "<div style=\"margin-bottom:16px;\">" + PROMPT
-                + " <span style=\"color:#e6edf3;\">mail --status</span></div>"
-                + "<div style=\"color:#3fb950; margin-bottom:18px;\">&#10003; " + estado + "</div>"
-                + "<div style=\"color:#e6edf3; margin-bottom:14px;\"><span style=\"color:#3fb950;\">&gt;</span> "
+                + " <span style=\"color:#c0caf5;\">mail --status</span></div>"
+                + "<div style=\"color:#9ece6a; margin-bottom:18px;\">&#10003; " + estado + "</div>"
+                + "<div style=\"color:#c0caf5; margin-bottom:14px;\"><span style=\"color:#9ece6a;\">&gt;</span> "
                 + saludo + nombre + ",</div>"
-                + "<div style=\"color:#e6edf3; margin-bottom:18px;\">" + cuerpoTexto + "</div>"
-                + "<div style=\"color:#8b949e; margin-bottom:18px;\">&#8212; " + firma + "</div>"
-                + "<div>" + PROMPT + " <span style=\"color:#e6edf3;\">_</span></div>";
+                + "<div style=\"color:#c0caf5; margin-bottom:18px;\">" + cuerpoTexto + "</div>"
+                + "<div style=\"color:#828bb8; margin-bottom:18px;\">&#8212; " + firma + "</div>"
+                + "<div>" + PROMPT + " <span style=\"color:#c0caf5;\">_</span></div>";
 
         return envolver(en ? "en" : "es", cuerpo, pie);
     }
 
-    // Ventana de terminal (paleta GitHub dark): barra de título, cuerpo y pie.
+    // Ventana de terminal (paleta Tokyo Night): barra de título, cuerpo y pie.
     private String envolver(String lang, String cuerpo, String pie) {
         return ("""
                 <!DOCTYPE html>
@@ -182,23 +185,23 @@ public class EmailService {
                   <meta charset="utf-8">
                   <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 </head>
-                <body style="margin:0; padding:0; background-color:#010409;">
-                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#010409; padding:24px 0;">
+                <body style="margin:0; padding:0; background-color:#16161e;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#16161e; padding:24px 0;">
                     <tr><td align="center">
-                      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; border:1px solid #30363d; border-radius:8px; overflow:hidden; font-family:'SF Mono','Consolas','Liberation Mono',Menlo,monospace;">
+                      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; border:1px solid #2f334d; border-radius:8px; overflow:hidden; font-family:'SF Mono','Consolas','Liberation Mono',Menlo,monospace;">
                         <tr>
-                          <td style="background-color:#161b22; padding:10px 14px; border-bottom:1px solid #30363d;">
-                            <span style="display:inline-block; width:11px; height:11px; border-radius:50%; background-color:#f85149; margin-right:6px;"></span>
-                            <span style="display:inline-block; width:11px; height:11px; border-radius:50%; background-color:#d29922; margin-right:6px;"></span>
-                            <span style="display:inline-block; width:11px; height:11px; border-radius:50%; background-color:#3fb950;"></span>
-                            <span style="color:#8b949e; font-size:12px; vertical-align:middle; margin-left:10px;">adrian@portfolio: ~</span>
+                          <td style="background-color:#24283b; padding:10px 14px; border-bottom:1px solid #2f334d;">
+                            <span style="display:inline-block; width:11px; height:11px; border-radius:50%; background-color:#f7768e; margin-right:6px;"></span>
+                            <span style="display:inline-block; width:11px; height:11px; border-radius:50%; background-color:#e0af68; margin-right:6px;"></span>
+                            <span style="display:inline-block; width:11px; height:11px; border-radius:50%; background-color:#9ece6a;"></span>
+                            <span style="color:#828bb8; font-size:12px; vertical-align:middle; margin-left:10px;">adrian@portfolio: ~</span>
                           </td>
                         </tr>
                         <tr>
-                          <td style="background-color:#0d1117; padding:22px; font-size:14px; line-height:1.7;">%CUERPO%</td>
+                          <td style="background-color:#1a1b26; padding:22px; font-size:14px; line-height:1.7;">%CUERPO%</td>
                         </tr>
                         <tr>
-                          <td style="background-color:#161b22; padding:10px 14px; border-top:1px solid #30363d; color:#8b949e; font-size:11px;">%PIE% &nbsp;&#183;&nbsp; <a href="https://www.codeadrianmc.dev" style="color:#58a6ff; text-decoration:none;">www.codeadrianmc.dev</a></td>
+                          <td style="background-color:#24283b; padding:10px 14px; border-top:1px solid #2f334d; color:#828bb8; font-size:11px;">%PIE% &nbsp;&#183;&nbsp; <a href="https://www.codeadrianmc.dev" style="color:#7aa2f7; text-decoration:none;">www.codeadrianmc.dev</a></td>
                         </tr>
                       </table>
                     </td></tr>
@@ -214,11 +217,11 @@ public class EmailService {
     // Ficha estilo neofetch: línea de comando + arte ASCII (izq.) y tabla de datos (der.).
     private String ficha(String comando, String filas) {
         return "<div style=\"margin-bottom:14px;\">" + PROMPT
-                + " <span style=\"color:#e6edf3;\">" + comando + "</span></div>"
+                + " <span style=\"color:#c0caf5;\">" + comando + "</span></div>"
                 + "<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin-bottom:22px;\">"
                 + "<tr>"
                 + "<td valign=\"top\" style=\"padding-right:22px;\">"
-                + "<pre style=\"margin:0; color:#58a6ff; font-size:10px; line-height:1.15; white-space:pre; font-family:'SF Mono','Consolas','Liberation Mono',Menlo,monospace;\">"
+                + "<pre style=\"margin:0; color:#bb9af7; font-size:10px; line-height:1.15; white-space:pre; font-family:'SF Mono','Consolas','Liberation Mono',Menlo,monospace;\">"
                 + ART + "</pre>"
                 + "</td>"
                 + "<td valign=\"top\">"
@@ -231,8 +234,8 @@ public class EmailService {
 
     private static String filaNeo(String label, String value) {
         return "<tr>"
-                + "<td style=\"color:#3fb950; padding:0 14px 3px 0; white-space:nowrap; vertical-align:top;\">" + label + "</td>"
-                + "<td style=\"color:#e6edf3; padding-bottom:3px;\">" + value + "</td>"
+                + "<td style=\"color:#9ece6a; padding:0 14px 3px 0; white-space:nowrap; vertical-align:top;\">" + label + "</td>"
+                + "<td style=\"color:#c0caf5; padding-bottom:3px;\">" + value + "</td>"
                 + "</tr>";
     }
 
