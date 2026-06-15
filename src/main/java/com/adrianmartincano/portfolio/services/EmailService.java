@@ -184,6 +184,21 @@ public class EmailService {
                 <head>
                   <meta charset="utf-8">
                   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <style>
+                    /* El bloque neofetch (arte ASCII + datos) va en dos columnas en
+                       escritorio. En móvil esas dos columnas no caben y el cliente
+                       hace zoom-out dejando todo ilegible, así que aquí se apilan:
+                       el arte arriba (centrado y un punto más pequeño) y los datos
+                       debajo. Las reglas necesitan !important para ganar al estilo
+                       inline. Outlook-desktop ignora la media query y mantiene la
+                       vista de escritorio, que en pantalla grande es lo deseado. */
+                    @media only screen and (max-width:480px) {
+                      .nf-col { display:block !important; width:100% !important; }
+                      .nf-art { padding:0 0 16px 0 !important; text-align:center !important; }
+                      .nf-art pre { font-size:9px !important; display:inline-block !important; }
+                      .nf-data { padding:0 !important; }
+                    }
+                  </style>
                 </head>
                 <body style="margin:0; padding:0; background-color:#16161e;">
                   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#16161e; padding:24px 0;">
@@ -220,11 +235,11 @@ public class EmailService {
                 + " <span style=\"color:#c0caf5;\">" + comando + "</span></div>"
                 + "<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin-bottom:22px;\">"
                 + "<tr>"
-                + "<td valign=\"top\" style=\"padding-right:22px;\">"
+                + "<td valign=\"top\" class=\"nf-col nf-art\" style=\"padding-right:22px;\">"
                 + "<pre style=\"margin:0; color:#bb9af7; font-size:10px; line-height:1.15; white-space:pre; font-family:'SF Mono','Consolas','Liberation Mono',Menlo,monospace;\">"
                 + ART + "</pre>"
                 + "</td>"
-                + "<td valign=\"top\">"
+                + "<td valign=\"top\" class=\"nf-col nf-data\">"
                 + "<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-size:13px;\">"
                 + filas + "</table>"
                 + "</td>"
@@ -235,7 +250,7 @@ public class EmailService {
     private static String filaNeo(String label, String value) {
         return "<tr>"
                 + "<td style=\"color:#9ece6a; padding:0 14px 3px 0; white-space:nowrap; vertical-align:top;\">" + label + "</td>"
-                + "<td style=\"color:#c0caf5; padding-bottom:3px;\">" + value + "</td>"
+                + "<td style=\"color:#c0caf5; padding-bottom:3px; word-break:break-word;\">" + value + "</td>"
                 + "</tr>";
     }
 
