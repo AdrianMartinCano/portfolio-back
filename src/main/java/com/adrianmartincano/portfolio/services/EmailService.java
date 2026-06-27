@@ -1,13 +1,15 @@
 package com.adrianmartincano.portfolio.services;
 
 import com.adrianmartincano.portfolio.DTO.ContactoForm;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
+import org.springframework.mail.MailException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
-import org.springframework.web.client.RestClientResponseException;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -39,16 +41,17 @@ public class EmailService {
             + "<span style=\"color:#7aa2f7;\">~</span>"
             + "<span style=\"color:#828bb8;\">$</span>";
 
-    private final RestClient http = RestClient.create();
+    private final JavaMailSender mailSender;
 
-    @Value("${resend.api-key}")
-    private String apiKey;
+    public EmailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     @Value("${contacto.destino}")
     private String destino;
 
-    // Remitente de los correos. El email debe pertenecer a un dominio
-    // verificado en Resend.
+    // Remitente de los correos. El email debe coincidir con el buzón autenticado
+    // en el SMTP de Plesk (spring.mail.username) para que SPF/DKIM queden alineados.
     @Value("${contacto.remitente.email}")
     private String remitenteEmail;
 
@@ -72,20 +75,26 @@ public class EmailService {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void enviar(Map<String, Object> cuerpo) {
         try {
-            http.post()
-                    .uri("https://api.resend.com/emails")
-                    .header("Authorization", "Bearer " + apiKey)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(cuerpo)
-                    .retrieve()
-                    .toBodilessEntity();
-        } catch (RestClientResponseException e) {
-            // Resend explica el motivo en el cuerpo de la respuesta (dominio sin
-            // verificar, 'from' inválido, API key incorrecta, límite alcanzado...).
-            log.error("Resend rechazó el envío [HTTP {}]: {}", e.getStatusCode().value(), e.getResponseBodyAsString());
-            throw e;
+            MimeMessage mensaje = mailSender.createMimeMessage();
+            // multipart=true para enviar texto plano + HTML como alternativas.
+            MimeMessageHelper helper = new MimeMessageHelper(mensaje, true, "UTF-8");
+            helper.setFrom((String) cuerpo.get("from"));
+            helper.setTo(((List<String>) cuerpo.get("to")).toArray(new String[0]));
+            if (cuerpo.get("reply_to") != null) {
+                helper.setReplyTo((String) cuerpo.get("reply_to"));
+            }
+            helper.setSubject((String) cuerpo.get("subject"));
+            // setText(plano, html): el cliente muestra el HTML y cae al texto si no puede.
+            helper.setText((String) cuerpo.get("text"), (String) cuerpo.get("html"));
+            mailSender.send(mensaje);
+        } catch (MailException | MessagingException e) {
+            // El SMTP de Plesk explica el motivo (auth incorrecta, 'from' no permitido,
+            // conexión rechazada, timeout...).
+            log.error("El SMTP rechazó el envío: {}", e.getMessage());
+            throw new RuntimeException("Fallo al enviar el correo de contacto", e);
         }
     }
 
