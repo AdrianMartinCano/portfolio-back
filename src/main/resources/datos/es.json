@@ -80,8 +80,9 @@
       "tipo": "Full Stack",
       "descripcion": "App de gestión para una empresa de mudanzas (PWA con permisos por rol y avisos push) y su web corporativa",
       "imagen": "/proyectos/rumbo-fijo.svg",
-      "repositorios": [],
-      "demo": "https://rumbofijo.es",
+      "repositorios": [
+        { "etiqueta": "Capturas y arquitectura", "url": "https://github.com/AdrianMartinCano/rumbo-fijo-escaparate" }
+      ],
       "tecnologias": ["Angular 20", "Ionic 8", "PWA", "Web Push", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Flyway", "Vercel", "Docker", "Coolify"],
       "caracteristicas": [
         "App interna instalable (PWA) para los jefes y el equipo de la empresa",
