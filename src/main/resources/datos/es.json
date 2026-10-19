@@ -27,29 +27,6 @@
       "estado": "En producción"
     },
     {
-      "slug": "lacajadelaton",
-      "permisos": "750",
-      "nombre": "La Caja de Latón",
-      "tipo": "Full Stack",
-      "descripcion": "Web de una editorial: venta del libro con Stripe, blog y foro de comunidad, montada sobre mis librerías propias",
-      "imagen": "/proyectos/lacajadelaton.svg",
-      "repositorios": [],
-      "demo": "https://lacajadelaton.com",
-      "tecnologias": ["Angular 21", "Signals", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Stripe", "Docker", "Coolify", "Traefik"],
-      "caracteristicas": [
-        "Tienda del libro en edición normal y especial, con pago por Stripe y webhooks",
-        "Blog del autor y foro de comunidad con reacciones, citas, notificaciones y moderación",
-        "Entrar con Google, newsletter con doble opt-in y textos legales RGPD",
-        "Panel de administración de pedidos con estados, reembolsos y avisos por email",
-        "Montada con 14 librerías Angular y 11 módulos Spring de mi ecosistema propio",
-        "Desplegada en un VPS con Coolify y Traefik (TLS con Let's Encrypt)"
-      ],
-      "problema": "Una editorial pequeña necesitaba vender su libro directamente, sin plataformas que se queden comisión, y a la vez tener un sitio donde reunir a sus lectores. Hacía falta tienda, blog y foro en una sola web que pudiera gestionar sin depender de mí.",
-      "aprendizajes": "Fue la prueba de fuego de mis librerías: casi toda la web sale de ellas, y cada carencia que encontré (opciones en el carrito, reembolsos de verdad, el foro) la arreglé en la librería y no en el proyecto, así que ahora la tienen todas las webs. También aprendí a operar en producción: copias de seguridad, restaurar un despliegue y endurecer el SSH del servidor sin cortarle el acceso al despliegue.",
-      "fecha": "Junio 2026 - Presente",
-      "estado": "En producción"
-    },
-    {
       "slug": "librerias-compartidas",
       "permisos": "755",
       "nombre": "Ecosistema de librerías compartidas",
@@ -74,26 +51,26 @@
       "estado": "En desarrollo activo"
     },
     {
-      "slug": "rumbo-fijo",
+      "slug": "lacajadelaton",
       "permisos": "750",
-      "nombre": "Rumbo Fijo",
+      "nombre": "La Caja de Latón",
       "tipo": "Full Stack",
-      "descripcion": "App de gestión para una empresa de mudanzas (PWA con permisos por rol y avisos push) y su web corporativa",
-      "imagen": "/proyectos/rumbo-fijo.svg",
-      "repositorios": [
-        { "etiqueta": "Capturas y arquitectura", "url": "https://github.com/AdrianMartinCano/rumbo-fijo-escaparate" }
-      ],
-      "tecnologias": ["Angular 20", "Ionic 8", "PWA", "Web Push", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Flyway", "Vercel", "Docker", "Coolify"],
+      "descripcion": "Web de una editorial: venta del libro con Stripe, blog y foro de comunidad, montada sobre mis librerías propias",
+      "imagen": "/proyectos/lacajadelaton.svg",
+      "repositorios": [],
+      "demo": "https://lacajadelaton.com",
+      "tecnologias": ["Angular 21", "Signals", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Stripe", "Docker", "Coolify", "Traefik"],
       "caracteristicas": [
-        "App interna instalable (PWA) para los jefes y el equipo de la empresa",
-        "Permisos por rol aplicados en el servidor: el empleado ve direcciones y fecha, pero no precios, clientes ni teléfonos",
-        "Recordatorio push (Web Push) a las 19:00 del día antes de cada mudanza",
-        "Mudanzas a precio cerrado, propinas y contabilidad de la empresa",
-        "Web corporativa prerenderizada a HTML estático en Vercel, con formulario de presupuesto"
+        "Tienda del libro en edición normal y especial, con pago por Stripe y webhooks",
+        "Blog del autor y foro de comunidad con reacciones, citas, notificaciones y moderación",
+        "Entrar con Google, newsletter con doble opt-in y textos legales RGPD",
+        "Panel de administración de pedidos con estados, reembolsos y avisos por email",
+        "Montada con 14 librerías Angular y 11 módulos Spring de mi ecosistema propio",
+        "Desplegada en un VPS con Coolify y Traefik (TLS con Let's Encrypt)"
       ],
-      "problema": "Una empresa de mudanzas lo llevaba todo entre papel y WhatsApp. Necesitaban organizar las mudanzas y las cuentas, pero sin que un empleado pudiera llevarse la cartera de clientes: tenía que ver dónde ir y cuándo, y nada más.",
-      "aprendizajes": "La lección principal: ocultar datos en la interfaz no es seguridad. El filtrado por rol lo hace el servidor y el empleado ni siquiera recibe esos campos. Separé la web pública (estática, rápida y buena para Google) de la app interna, porque tienen necesidades opuestas, y dejé cada decisión de negocio (precio cerrado, propinas, quién ve qué) documentada como ADR.",
-      "fecha": "Agosto 2026 - Presente",
+      "problema": "Una editorial pequeña necesitaba vender su libro directamente, sin plataformas que se queden comisión, y a la vez tener un sitio donde reunir a sus lectores. Hacía falta tienda, blog y foro en una sola web que pudiera gestionar sin depender de mí.",
+      "aprendizajes": "Fue la prueba de fuego de mis librerías: casi toda la web sale de ellas, y cada carencia que encontré (opciones en el carrito, reembolsos de verdad, el foro) la arreglé en la librería y no en el proyecto, así que ahora la tienen todas las webs. También aprendí a operar en producción: copias de seguridad, restaurar un despliegue y endurecer el SSH del servidor sin cortarle el acceso al despliegue.",
+      "fecha": "Junio 2026 - Presente",
       "estado": "En producción"
     },
     {
@@ -119,6 +96,29 @@
       "problema": "Mis amigos y yo nos pasábamos horas farmeando items para venderlos en la casa de subastas en lugar de disfrutar de las raids y mazmorras, que es lo divertido del juego. La alternativa era comprar oro con dinero real, pero no todos podían permitírselo. Así que construí una plataforma que vigila el mercado y nos avisa de qué comprar y vender para hacer oro de forma eficiente, sin perder horas farmeando.",
       "aprendizajes": "Es mi proyecto más grande: 8 meses de desarrollo, ~15.000 líneas y arquitectura multi-módulo. Aprendí a diseñar un pipeline de datos con Spring Batch, a integrar OAuth2 con APIs externas (Blizzard y Discord) y a orquestar varios servicios. El siguiente paso es ampliar la cobertura de tests sobre la lógica de análisis y añadir métricas al batch.",
       "fecha": "Junio 2025 - Abril 2026",
+      "estado": "En producción"
+    },
+    {
+      "slug": "rumbo-fijo",
+      "permisos": "750",
+      "nombre": "Rumbo Fijo",
+      "tipo": "Full Stack",
+      "descripcion": "App de gestión para una empresa de mudanzas (PWA con permisos por rol y avisos push) y su web corporativa",
+      "imagen": "/proyectos/rumbo-fijo.svg",
+      "repositorios": [
+        { "etiqueta": "Capturas y arquitectura", "url": "https://github.com/AdrianMartinCano/rumbo-fijo-escaparate" }
+      ],
+      "tecnologias": ["Angular 20", "Ionic 8", "PWA", "Web Push", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Flyway", "Vercel", "Docker", "Coolify"],
+      "caracteristicas": [
+        "App interna instalable (PWA) para los jefes y el equipo de la empresa",
+        "Permisos por rol aplicados en el servidor: el empleado ve direcciones y fecha, pero no precios, clientes ni teléfonos",
+        "Recordatorio push (Web Push) a las 19:00 del día antes de cada mudanza",
+        "Mudanzas a precio cerrado, propinas y contabilidad de la empresa",
+        "Web corporativa prerenderizada a HTML estático en Vercel, con formulario de presupuesto"
+      ],
+      "problema": "Una empresa de mudanzas lo llevaba todo entre papel y WhatsApp. Necesitaban organizar las mudanzas y las cuentas, pero sin que un empleado pudiera llevarse la cartera de clientes: tenía que ver dónde ir y cuándo, y nada más.",
+      "aprendizajes": "La lección principal: ocultar datos en la interfaz no es seguridad. El filtrado por rol lo hace el servidor y el empleado ni siquiera recibe esos campos. Separé la web pública (estática, rápida y buena para Google) de la app interna, porque tienen necesidades opuestas, y dejé cada decisión de negocio (precio cerrado, propinas, quién ve qué) documentada como ADR.",
+      "fecha": "Agosto 2026 - Presente",
       "estado": "En producción"
     },
     {
@@ -170,30 +170,6 @@
       "aprendizajes": "Reforcé signals y el nuevo control flow de Angular, monté la i18n y el cambio de tema desde cero, y construí la API que alimenta la web con despliegue en Render. El mayor aprendizaje fue de criterio: equilibrar un concepto vistoso (la terminal, el juego, los comandos) con una navegación clara y accesible.",
       "fecha": "Septiembre 2023 - Presente",
       "estado": "En evolución"
-    },
-    {
-      "slug": "keycloud",
-      "permisos": "555",
-      "nombre": "KeyCloud",
-      "tipo": "Full Stack",
-      "descripcion": "Gestor de contraseñas seguro full-stack: cliente Angular y API en Spring Boot",
-      "imagen": "/proyectos/keycloud.png",
-      "repositorios": [
-        { "etiqueta": "Frontend", "url": "https://github.com/AdrianMartinCano/keycloud-front" },
-        { "etiqueta": "Backend", "url": "https://github.com/AdrianMartinCano/keycloud" }
-      ],
-      "tecnologias": ["Angular 16", "TypeScript", "Java", "Spring Boot", "JPA", "MySQL", "Docker", "Maven"],
-      "caracteristicas": [
-        "Encriptación AES de las contraseñas con CryptoJS",
-        "Autenticación y gestión de usuarios",
-        "CRUD de contraseñas sobre API REST",
-        "Base de datos MySQL",
-        "Backend contenedorizado con Docker"
-      ],
-      "problema": "Quería un gestor de contraseñas propio en el que entender de primera mano cómo cifrar datos sensibles en el cliente antes de guardarlos, y construir el ciclo completo cliente-servidor con autenticación.",
-      "aprendizajes": "Fue mi primer proyecto full-stack serio con Angular y Spring Boot. Hoy veo claro su punto débil: la clave de cifrado es fija y compartida. Lo reharía con claves derivadas por usuario y una gestión de secretos real, y añadiría tests de integración a la API.",
-      "fecha": "Diciembre 2024 - Enero 2025",
-      "estado": "Terminado"
     },
     {
       "slug": "gas-path",

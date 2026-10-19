@@ -27,29 +27,6 @@
       "estado": "In production"
     },
     {
-      "slug": "lacajadelaton",
-      "permisos": "750",
-      "nombre": "La Caja de Latón",
-      "tipo": "Full Stack",
-      "descripcion": "Website for a publisher: book sales with Stripe, blog and community forum, built on top of my own libraries",
-      "imagen": "/proyectos/lacajadelaton.svg",
-      "repositorios": [],
-      "demo": "https://lacajadelaton.com",
-      "tecnologias": ["Angular 21", "Signals", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Stripe", "Docker", "Coolify", "Traefik"],
-      "caracteristicas": [
-        "Book shop with standard and special editions, Stripe payments and webhooks",
-        "Author blog and community forum with reactions, quotes, notifications and moderation",
-        "Sign in with Google, double opt-in newsletter and GDPR legal pages",
-        "Order admin panel with statuses, refunds and email notifications",
-        "Built with 14 Angular libraries and 11 Spring modules from my own ecosystem",
-        "Deployed on a VPS with Coolify and Traefik (TLS with Let's Encrypt)"
-      ],
-      "problema": "A small publisher needed to sell its book directly, without platforms taking a cut, and at the same time have a place to bring its readers together. It needed a shop, a blog and a forum in a single website they could run without depending on me.",
-      "aprendizajes": "It was the real test for my libraries: almost the whole site comes from them, and every gap I found (cart options, real refunds, the forum) I fixed in the library rather than in the project, so every site now has it. I also learned to run things in production: backups, restoring a deployment and hardening the server's SSH without cutting off the deployment's access.",
-      "fecha": "June 2026 - Present",
-      "estado": "In production"
-    },
-    {
       "slug": "librerias-compartidas",
       "permisos": "755",
       "nombre": "Shared library ecosystem",
@@ -74,26 +51,26 @@
       "estado": "In active development"
     },
     {
-      "slug": "rumbo-fijo",
+      "slug": "lacajadelaton",
       "permisos": "750",
-      "nombre": "Rumbo Fijo",
+      "nombre": "La Caja de Latón",
       "tipo": "Full Stack",
-      "descripcion": "Management app for a removals company (PWA with role-based permissions and push notifications) and its corporate website",
-      "imagen": "/proyectos/rumbo-fijo.svg",
-      "repositorios": [
-        { "etiqueta": "Screenshots and architecture", "url": "https://github.com/AdrianMartinCano/rumbo-fijo-escaparate" }
-      ],
-      "tecnologias": ["Angular 20", "Ionic 8", "PWA", "Web Push", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Flyway", "Vercel", "Docker", "Coolify"],
+      "descripcion": "Website for a publisher: book sales with Stripe, blog and community forum, built on top of my own libraries",
+      "imagen": "/proyectos/lacajadelaton.svg",
+      "repositorios": [],
+      "demo": "https://lacajadelaton.com",
+      "tecnologias": ["Angular 21", "Signals", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Stripe", "Docker", "Coolify", "Traefik"],
       "caracteristicas": [
-        "Installable internal app (PWA) for the company's owners and team",
-        "Role-based permissions enforced on the server: the employee sees addresses and dates, but not prices, clients or phone numbers",
-        "Push reminder (Web Push) at 7 pm the day before each move",
-        "Fixed-price moves, tips and company bookkeeping",
-        "Corporate website prerendered to static HTML on Vercel, with a quote request form"
+        "Book shop with standard and special editions, Stripe payments and webhooks",
+        "Author blog and community forum with reactions, quotes, notifications and moderation",
+        "Sign in with Google, double opt-in newsletter and GDPR legal pages",
+        "Order admin panel with statuses, refunds and email notifications",
+        "Built with 14 Angular libraries and 11 Spring modules from my own ecosystem",
+        "Deployed on a VPS with Coolify and Traefik (TLS with Let's Encrypt)"
       ],
-      "problema": "A removals company ran everything on paper and WhatsApp. They needed to organise their moves and their accounts, but without an employee being able to walk away with the client list: they had to see where to go and when, and nothing else.",
-      "aprendizajes": "The main lesson: hiding data in the interface is not security. Role filtering happens on the server, and the employee never even receives those fields. I split the public website (static, fast and good for Google) from the internal app, because their needs are opposite, and documented every business decision (fixed price, tips, who sees what) as an ADR.",
-      "fecha": "August 2026 - Present",
+      "problema": "A small publisher needed to sell its book directly, without platforms taking a cut, and at the same time have a place to bring its readers together. It needed a shop, a blog and a forum in a single website they could run without depending on me.",
+      "aprendizajes": "It was the real test for my libraries: almost the whole site comes from them, and every gap I found (cart options, real refunds, the forum) I fixed in the library rather than in the project, so every site now has it. I also learned to run things in production: backups, restoring a deployment and hardening the server's SSH without cutting off the deployment's access.",
+      "fecha": "June 2026 - Present",
       "estado": "In production"
     },
     {
@@ -119,6 +96,29 @@
       "problema": "My friends and I were spending hours farming items to sell on the auction house instead of enjoying the raids and dungeons, which is the fun part of the game. The alternative was buying gold with real money, but not everyone could afford it. So I built a platform that watches the market and tells us what to buy and sell to make gold efficiently, without grinding for hours.",
       "aprendizajes": "It's my largest project: 8 months of development, ~15,000 lines and a multi-module architecture. I learned to design a data pipeline with Spring Batch, integrate OAuth2 with external APIs (Blizzard and Discord) and orchestrate several services. The next step is widening test coverage over the analysis logic and adding metrics to the batch.",
       "fecha": "June 2025 - April 2026",
+      "estado": "In production"
+    },
+    {
+      "slug": "rumbo-fijo",
+      "permisos": "750",
+      "nombre": "Rumbo Fijo",
+      "tipo": "Full Stack",
+      "descripcion": "Management app for a removals company (PWA with role-based permissions and push notifications) and its corporate website",
+      "imagen": "/proyectos/rumbo-fijo.svg",
+      "repositorios": [
+        { "etiqueta": "Screenshots and architecture", "url": "https://github.com/AdrianMartinCano/rumbo-fijo-escaparate" }
+      ],
+      "tecnologias": ["Angular 20", "Ionic 8", "PWA", "Web Push", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Flyway", "Vercel", "Docker", "Coolify"],
+      "caracteristicas": [
+        "Installable internal app (PWA) for the company's owners and team",
+        "Role-based permissions enforced on the server: the employee sees addresses and dates, but not prices, clients or phone numbers",
+        "Push reminder (Web Push) at 7 pm the day before each move",
+        "Fixed-price moves, tips and company bookkeeping",
+        "Corporate website prerendered to static HTML on Vercel, with a quote request form"
+      ],
+      "problema": "A removals company ran everything on paper and WhatsApp. They needed to organise their moves and their accounts, but without an employee being able to walk away with the client list: they had to see where to go and when, and nothing else.",
+      "aprendizajes": "The main lesson: hiding data in the interface is not security. Role filtering happens on the server, and the employee never even receives those fields. I split the public website (static, fast and good for Google) from the internal app, because their needs are opposite, and documented every business decision (fixed price, tips, who sees what) as an ADR.",
+      "fecha": "August 2026 - Present",
       "estado": "In production"
     },
     {
@@ -170,30 +170,6 @@
       "aprendizajes": "I deepened signals and Angular's new control flow, built i18n and theme switching from scratch, and wrote the API that feeds the site with a Render deployment. The biggest lesson was judgment: balancing a flashy concept (the terminal, the game, the commands) with clear, accessible navigation.",
       "fecha": "September 2023 - Present",
       "estado": "Evolving"
-    },
-    {
-      "slug": "keycloud",
-      "permisos": "555",
-      "nombre": "KeyCloud",
-      "tipo": "Full Stack",
-      "descripcion": "Secure full-stack password manager: Angular client and Spring Boot API",
-      "imagen": "/proyectos/keycloud.png",
-      "repositorios": [
-        { "etiqueta": "Frontend", "url": "https://github.com/AdrianMartinCano/keycloud-front" },
-        { "etiqueta": "Backend", "url": "https://github.com/AdrianMartinCano/keycloud" }
-      ],
-      "tecnologias": ["Angular 16", "TypeScript", "Java", "Spring Boot", "JPA", "MySQL", "Docker", "Maven"],
-      "caracteristicas": [
-        "AES password encryption with CryptoJS",
-        "User authentication and management",
-        "Password CRUD over a REST API",
-        "MySQL database",
-        "Backend containerized with Docker"
-      ],
-      "problema": "I wanted my own password manager to understand first-hand how to encrypt sensitive data on the client before storing it, and to build the full client-server cycle with authentication.",
-      "aprendizajes": "It was my first serious full-stack project with Angular and Spring Boot. Today I clearly see its weak point: the encryption key is fixed and shared. I'd rebuild it with per-user derived keys and real secret management, and add integration tests to the API.",
-      "fecha": "December 2024 - January 2025",
-      "estado": "Finished"
     },
     {
       "slug": "gas-path",
