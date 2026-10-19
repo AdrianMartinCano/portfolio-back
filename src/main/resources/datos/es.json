@@ -1,6 +1,101 @@
 {
   "proyectos": [
     {
+      "slug": "agarrao",
+      "permisos": "755",
+      "nombre": "Agarrao",
+      "tipo": "Full Stack",
+      "descripcion": "PWA para el gasto de casa: lista de la compra compartida, tickets que se leen solos, precio por unidad entre supermercados y gasolineras, todo en una app",
+      "imagen": "/proyectos/agarrao.svg",
+      "repositorios": [
+        { "etiqueta": "Repositorio", "url": "https://github.com/AdrianMartinCano/agarrao" }
+      ],
+      "demo": "https://agarrao.pimon.dev",
+      "tecnologias": ["Angular 21", "Ionic", "PWA", "Signals", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Flyway", "PDFBox", "Tesseract", "Leaflet", "Chart.js", "Docker"],
+      "caracteristicas": [
+        "Lista de la compra compartida por hogar: unirse con código o enlace y ver quién apuntó cada cosa",
+        "Lee los tickets solo: el PDF del súper (PDFBox) o una foto en el móvil (Tesseract), y tacha de la lista lo comprado",
+        "Precio por unidad (€/L, €/kg) entre supermercados, con la marca blanca equivalente «cara a cara»",
+        "Escáner de código de barras con Open Food Facts y precios de datos abiertos (Open Prices)",
+        "Gastos anotados y gastos fijos de cada mes, con gráficos por tipo y por tienda",
+        "Gasolineras por precio y cercanía (datos del Ministerio), repostajes por coche y planificador de viajes",
+        "Entrar con Google y construida sobre mis librerías propias (ng-* y spring-*)"
+      ],
+      "problema": "Quería saber de verdad cuánto se nos va en casa y dónde comprar cada cosa más barata. Las apps de listas no comparan precios, las de gastos no leen tickets y la de gasolineras que había hecho (Gasofa) iba por libre. Agarrao lo junta todo en una sola PWA, y cada persona enciende solo las partes que usa.",
+      "aprendizajes": "Leer tickets reales me enseñó que el texto de un PDF y el de una foto se parecen poco: acabé con un intérprete común y reglas que aprenden lo que cada hogar ya ha casado. También tomé decisiones legales con cabeza: la versión pública solo usa datos abiertos y los tickets propios, y cada decisión de diseño está documentada en el repo como ADR. Meter Gasofa dentro, migrando sus datos de producción con copias y vuelta atrás, fue un buen ejercicio de migración sin perder nada.",
+      "fecha": "Octubre 2026 - Presente",
+      "estado": "En producción"
+    },
+    {
+      "slug": "lacajadelaton",
+      "permisos": "750",
+      "nombre": "La Caja de Latón",
+      "tipo": "Full Stack",
+      "descripcion": "Web de una editorial: venta del libro con Stripe, blog y foro de comunidad, montada sobre mis librerías propias",
+      "imagen": "/proyectos/lacajadelaton.svg",
+      "repositorios": [],
+      "demo": "https://lacajadelaton.com",
+      "tecnologias": ["Angular 21", "Signals", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Stripe", "Docker", "Coolify", "Traefik"],
+      "caracteristicas": [
+        "Tienda del libro en edición normal y especial, con pago por Stripe y webhooks",
+        "Blog del autor y foro de comunidad con reacciones, citas, notificaciones y moderación",
+        "Entrar con Google, newsletter con doble opt-in y textos legales RGPD",
+        "Panel de administración de pedidos con estados, reembolsos y avisos por email",
+        "Montada con 14 librerías Angular y 11 módulos Spring de mi ecosistema propio",
+        "Desplegada en un VPS con Coolify y Traefik (TLS con Let's Encrypt)"
+      ],
+      "problema": "Una editorial pequeña necesitaba vender su libro directamente, sin plataformas que se queden comisión, y a la vez tener un sitio donde reunir a sus lectores. Hacía falta tienda, blog y foro en una sola web que pudiera gestionar sin depender de mí.",
+      "aprendizajes": "Fue la prueba de fuego de mis librerías: casi toda la web sale de ellas, y cada carencia que encontré (opciones en el carrito, reembolsos de verdad, el foro) la arreglé en la librería y no en el proyecto, así que ahora la tienen todas las webs. También aprendí a operar en producción: copias de seguridad, restaurar un despliegue y endurecer el SSH del servidor sin cortarle el acceso al despliegue.",
+      "fecha": "Junio 2026 - Presente",
+      "estado": "En producción"
+    },
+    {
+      "slug": "librerias-compartidas",
+      "permisos": "755",
+      "nombre": "Ecosistema de librerías compartidas",
+      "tipo": "Full Stack",
+      "descripcion": "Suite de librerías reutilizables publicadas (Spring Boot + Angular) para construir aplicaciones web profesionales en una fracción del tiempo",
+      "imagen": "/proyectos/librerias.svg",
+      "repositorios": [
+        { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/libreriasBackend" },
+        { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/librerias-frontend" }
+      ],
+      "tecnologias": ["Java 21", "Spring Boot 3.4", "Maven multi-módulo", "Angular 21", "Nx", "TypeScript", "GitHub Packages", "GitHub Actions", "Vite"],
+      "caracteristicas": [
+        "Suite modular: 17 módulos backend (Spring Boot) y 20 librerías frontend (Angular) para auth, usuarios, tienda, CMS, blog, foro, reservas, restauración, eventos y más",
+        "En producción en webs y apps reales: una editorial, una tienda de impresión 3D y una app de gastos, entre otras",
+        "Versionadas en GitHub Packages (Maven y npm) y publicadas por CI con GitHub Actions",
+        "Monorepo Nx organizado por capas (fundamentos, features y composiciones) sin dependencias circulares",
+        "Design system con tema configurable de 4 colores y modo oscuro"
+      ],
+      "problema": "Cada vez que empezaba un proyecto nuevo reescribía lo mismo: autenticación, usuarios, e-commerce, CMS, emails... Decidí extraer todo ese trabajo repetido en librerías versionadas y publicadas, para montar la base de cualquier aplicación en horas en lugar de días.",
+      "aprendizajes": "Diseñar código pensado para que lo consuman otros proyectos (y mi yo del futuro) me obligó a cuidar el versionado semántico, la retrocompatibilidad y la documentación de cada módulo. Montar el CI/CD de publicación en GitHub Packages y un monorepo Nx fue lo más cercano al trabajo de producto que he hecho.",
+      "fecha": "Febrero 2026 - Presente",
+      "estado": "En desarrollo activo"
+    },
+    {
+      "slug": "rumbo-fijo",
+      "permisos": "750",
+      "nombre": "Rumbo Fijo",
+      "tipo": "Full Stack",
+      "descripcion": "App de gestión para una empresa de mudanzas (PWA con permisos por rol y avisos push) y su web corporativa",
+      "imagen": "/proyectos/rumbo-fijo.svg",
+      "repositorios": [],
+      "demo": "https://rumbofijo.es",
+      "tecnologias": ["Angular 20", "Ionic 8", "PWA", "Web Push", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Flyway", "Vercel", "Docker", "Coolify"],
+      "caracteristicas": [
+        "App interna instalable (PWA) para los jefes y el equipo de la empresa",
+        "Permisos por rol aplicados en el servidor: el empleado ve direcciones y fecha, pero no precios, clientes ni teléfonos",
+        "Recordatorio push (Web Push) a las 19:00 del día antes de cada mudanza",
+        "Mudanzas a precio cerrado, propinas y contabilidad de la empresa",
+        "Web corporativa prerenderizada a HTML estático en Vercel, con formulario de presupuesto"
+      ],
+      "problema": "Una empresa de mudanzas lo llevaba todo entre papel y WhatsApp. Necesitaban organizar las mudanzas y las cuentas, pero sin que un empleado pudiera llevarse la cartera de clientes: tenía que ver dónde ir y cuándo, y nada más.",
+      "aprendizajes": "La lección principal: ocultar datos en la interfaz no es seguridad. El filtrado por rol lo hace el servidor y el empleado ni siquiera recibe esos campos. Separé la web pública (estática, rápida y buena para Google) de la app interna, porque tienen necesidades opuestas, y dejé cada decisión de negocio (precio cerrado, propinas, quién ve qué) documentada como ADR.",
+      "fecha": "Agosto 2026 - Presente",
+      "estado": "En producción"
+    },
+    {
       "slug": "wow-analyzer",
       "permisos": "755",
       "nombre": "WoW Auction Analyzer",
@@ -48,30 +143,6 @@
       "aprendizajes": "Mi primer proyecto en producción con un cliente real: aprendí que la fiabilidad y la facilidad de uso para quien lo administra importan más que cualquier tecnología vistosa. Lo construí en Vanilla JS y PHP a propósito, por simplicidad de despliegue; hoy estructuraría la API con un framework y le añadiría tests automatizados.",
       "fecha": "Enero 2026 - Febrero 2026",
       "estado": "En producción"
-    },
-    {
-      "slug": "librerias-compartidas",
-      "permisos": "755",
-      "nombre": "Ecosistema de librerías compartidas",
-      "tipo": "Full Stack",
-      "descripcion": "Suite de librerías reutilizables publicadas (Spring Boot + Angular) para construir aplicaciones web profesionales en una fracción del tiempo",
-      "imagen": "/proyectos/librerias.svg",
-      "repositorios": [
-        { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/libreriasBackend" },
-        { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/librerias-frontend" }
-      ],
-      "tecnologias": ["Java 21", "Spring Boot 3.4", "Maven multi-módulo", "Angular 21", "Nx", "TypeScript", "GitHub Packages", "GitHub Actions", "Vite"],
-      "caracteristicas": [
-        "Suite modular: 10 librerías backend (Spring Boot) y 14 frontend (Angular) para auth, usuarios, e-commerce, CMS, reservas y más",
-        "Publicadas y versionadas en GitHub Packages (Maven y npm)",
-        "Monorepo Nx que organiza y construye las librerías del frontend",
-        "Publicación continua con GitHub Actions",
-        "Design system con tema configurable de 4 colores y modo oscuro"
-      ],
-      "problema": "Cada vez que empezaba un proyecto nuevo reescribía lo mismo: autenticación, usuarios, e-commerce, CMS, emails... Decidí extraer todo ese trabajo repetido en librerías versionadas y publicadas, para montar la base de cualquier aplicación en horas en lugar de días.",
-      "aprendizajes": "Diseñar código pensado para que lo consuman otros proyectos (y mi yo del futuro) me obligó a cuidar el versionado semántico, la retrocompatibilidad y la documentación de cada módulo. Montar el CI/CD de publicación en GitHub Packages y un monorepo Nx fue lo más cercano al trabajo de producto que he hecho.",
-      "fecha": "Febrero 2026 - Junio 2026",
-      "estado": "Publicadas y en mantenimiento"
     },
     {
       "slug": "portfolio",
@@ -128,7 +199,7 @@
       "permisos": "555",
       "nombre": "Gas-Path",
       "tipo": "Móvil",
-      "descripcion": "Buscador de gasolineras según tu ubicación (proyecto de fin de grado)",
+      "descripcion": "Buscador de gasolineras según tu ubicación (proyecto de fin de grado, 2024)",
       "imagen": "/proyectos/gas-path.png",
       "repositorios": [
         { "etiqueta": "Repositorio", "url": "https://github.com/AdrianMartinCano/Gas-Path" }
@@ -140,7 +211,7 @@
         "Autenticación con Firebase"
       ],
       "problema": "Era mi proyecto de fin de grado (DAM, 2024). Quería resolver algo cotidiano —encontrar la gasolinera más barata cerca de ti— y de paso aprender desarrollo móvil nativo moderno con Kotlin y Jetpack Compose.",
-      "aprendizajes": "Mi primera app móvil completa: aprendí Jetpack Compose, la arquitectura MVVM y a integrar servicios externos (Google Maps, Firebase). Hoy cuidaría más la gestión de estado y cachearía las llamadas a la API de precios para reducir el consumo de datos.",
+      "aprendizajes": "Mi primera app móvil completa: aprendí Jetpack Compose, la arquitectura MVVM y a integrar servicios externos (Google Maps, Firebase). Hoy cuidaría más la gestión de estado y cachearía las llamadas a la API de precios para reducir el consumo de datos. La idea siguió creciendo: hoy vive dentro de Agarrao, como buscador de gasolineras por precio y cercanía.",
       "fecha": "Marzo 2024 - Junio 2024",
       "estado": "Terminado"
     }

@@ -1,6 +1,101 @@
 {
   "proyectos": [
     {
+      "slug": "agarrao",
+      "permisos": "755",
+      "nombre": "Agarrao",
+      "tipo": "Full Stack",
+      "descripcion": "PWA for household spending: shared shopping list, receipts that read themselves, price per unit across supermarkets and petrol stations, all in one app",
+      "imagen": "/proyectos/agarrao.svg",
+      "repositorios": [
+        { "etiqueta": "Repository", "url": "https://github.com/AdrianMartinCano/agarrao" }
+      ],
+      "demo": "https://agarrao.pimon.dev",
+      "tecnologias": ["Angular 21", "Ionic", "PWA", "Signals", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Flyway", "PDFBox", "Tesseract", "Leaflet", "Chart.js", "Docker"],
+      "caracteristicas": [
+        "Shopping list shared per household: join with a code or link and see who added each item",
+        "Reads receipts on its own: the supermarket PDF (PDFBox) or a photo on the phone (Tesseract), and ticks off what was bought",
+        "Price per unit (€/L, €/kg) across supermarkets, with the equivalent store brand side by side",
+        "Barcode scanner with Open Food Facts and open-data prices (Open Prices)",
+        "Logged and monthly fixed expenses, with charts by type and by store",
+        "Petrol stations by price and distance (official government data), refuelling log per car and trip planner",
+        "Sign in with Google, built on top of my own libraries (ng-* and spring-*)"
+      ],
+      "problema": "I wanted to really know how much our household spends and where each thing is cheapest. List apps don't compare prices, expense apps don't read receipts, and the petrol station app I had built (Gasofa) lived on its own. Agarrao brings it all together in one PWA, and each person only turns on the parts they use.",
+      "aprendizajes": "Reading real receipts taught me that the text of a PDF and that of a photo have little in common: I ended up with a shared parser and rules that learn what each household has already matched. I also made legal decisions carefully: the public version only uses open data and your own receipts, and every design decision is documented in the repo as an ADR. Merging Gasofa into it, migrating its production data with backups and a rollback plan, was a good exercise in migrating without losing anything.",
+      "fecha": "October 2026 - Present",
+      "estado": "In production"
+    },
+    {
+      "slug": "lacajadelaton",
+      "permisos": "750",
+      "nombre": "La Caja de Latón",
+      "tipo": "Full Stack",
+      "descripcion": "Website for a publisher: book sales with Stripe, blog and community forum, built on top of my own libraries",
+      "imagen": "/proyectos/lacajadelaton.svg",
+      "repositorios": [],
+      "demo": "https://lacajadelaton.com",
+      "tecnologias": ["Angular 21", "Signals", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Stripe", "Docker", "Coolify", "Traefik"],
+      "caracteristicas": [
+        "Book shop with standard and special editions, Stripe payments and webhooks",
+        "Author blog and community forum with reactions, quotes, notifications and moderation",
+        "Sign in with Google, double opt-in newsletter and GDPR legal pages",
+        "Order admin panel with statuses, refunds and email notifications",
+        "Built with 14 Angular libraries and 11 Spring modules from my own ecosystem",
+        "Deployed on a VPS with Coolify and Traefik (TLS with Let's Encrypt)"
+      ],
+      "problema": "A small publisher needed to sell its book directly, without platforms taking a cut, and at the same time have a place to bring its readers together. It needed a shop, a blog and a forum in a single website they could run without depending on me.",
+      "aprendizajes": "It was the real test for my libraries: almost the whole site comes from them, and every gap I found (cart options, real refunds, the forum) I fixed in the library rather than in the project, so every site now has it. I also learned to run things in production: backups, restoring a deployment and hardening the server's SSH without cutting off the deployment's access.",
+      "fecha": "June 2026 - Present",
+      "estado": "In production"
+    },
+    {
+      "slug": "librerias-compartidas",
+      "permisos": "755",
+      "nombre": "Shared library ecosystem",
+      "tipo": "Full Stack",
+      "descripcion": "Suite of published reusable libraries (Spring Boot + Angular) to build professional web apps in a fraction of the time",
+      "imagen": "/proyectos/librerias.svg",
+      "repositorios": [
+        { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/libreriasBackend" },
+        { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/librerias-frontend" }
+      ],
+      "tecnologias": ["Java 21", "Spring Boot 3.4", "Maven multi-module", "Angular 21", "Nx", "TypeScript", "GitHub Packages", "GitHub Actions", "Vite"],
+      "caracteristicas": [
+        "Modular suite: 17 backend modules (Spring Boot) and 20 frontend libraries (Angular) for auth, users, shop, CMS, blog, forum, bookings, restaurants, events and more",
+        "In production in real websites and apps: a publisher, a 3D printing shop and a spending app, among others",
+        "Versioned on GitHub Packages (Maven and npm) and published by CI with GitHub Actions",
+        "Nx monorepo organised in layers (foundations, features and compositions) with no circular dependencies",
+        "Design system with a configurable 4-colour theme and dark mode"
+      ],
+      "problema": "Every time I started a new project I rewrote the same things: auth, users, e-commerce, CMS, emails... I decided to extract all that repeated work into versioned, published libraries, to set up the foundation of any app in hours instead of days.",
+      "aprendizajes": "Designing code meant to be consumed by other projects (and my future self) forced me to care about semantic versioning, backward compatibility and documenting each module. Setting up the publish CI/CD on GitHub Packages and an Nx monorepo was the closest thing to product work I've done.",
+      "fecha": "February 2026 - Present",
+      "estado": "In active development"
+    },
+    {
+      "slug": "rumbo-fijo",
+      "permisos": "750",
+      "nombre": "Rumbo Fijo",
+      "tipo": "Full Stack",
+      "descripcion": "Management app for a removals company (PWA with role-based permissions and push notifications) and its corporate website",
+      "imagen": "/proyectos/rumbo-fijo.svg",
+      "repositorios": [],
+      "demo": "https://rumbofijo.es",
+      "tecnologias": ["Angular 20", "Ionic 8", "PWA", "Web Push", "Java 21", "Spring Boot 3.4", "PostgreSQL", "Flyway", "Vercel", "Docker", "Coolify"],
+      "caracteristicas": [
+        "Installable internal app (PWA) for the company's owners and team",
+        "Role-based permissions enforced on the server: the employee sees addresses and dates, but not prices, clients or phone numbers",
+        "Push reminder (Web Push) at 7 pm the day before each move",
+        "Fixed-price moves, tips and company bookkeeping",
+        "Corporate website prerendered to static HTML on Vercel, with a quote request form"
+      ],
+      "problema": "A removals company ran everything on paper and WhatsApp. They needed to organise their moves and their accounts, but without an employee being able to walk away with the client list: they had to see where to go and when, and nothing else.",
+      "aprendizajes": "The main lesson: hiding data in the interface is not security. Role filtering happens on the server, and the employee never even receives those fields. I split the public website (static, fast and good for Google) from the internal app, because their needs are opposite, and documented every business decision (fixed price, tips, who sees what) as an ADR.",
+      "fecha": "August 2026 - Present",
+      "estado": "In production"
+    },
+    {
       "slug": "wow-analyzer",
       "permisos": "755",
       "nombre": "WoW Auction Analyzer",
@@ -48,30 +143,6 @@
       "aprendizajes": "My first production project with a real client: I learned that reliability and ease of use for whoever administers it matter more than any flashy tech. I built it in vanilla JS and PHP on purpose, for deployment simplicity; today I'd structure the API with a framework and add automated tests.",
       "fecha": "January 2026 - February 2026",
       "estado": "In production"
-    },
-    {
-      "slug": "librerias-compartidas",
-      "permisos": "755",
-      "nombre": "Shared library ecosystem",
-      "tipo": "Full Stack",
-      "descripcion": "Suite of published reusable libraries (Spring Boot + Angular) to build professional web apps in a fraction of the time",
-      "imagen": "/proyectos/librerias.svg",
-      "repositorios": [
-        { "etiqueta": "Backend (Spring)", "url": "https://github.com/AdrianMartinCano/libreriasBackend" },
-        { "etiqueta": "Frontend (Angular)", "url": "https://github.com/AdrianMartinCano/librerias-frontend" }
-      ],
-      "tecnologias": ["Java 21", "Spring Boot 3.4", "Maven multi-module", "Angular 21", "Nx", "TypeScript", "GitHub Packages", "GitHub Actions", "Vite"],
-      "caracteristicas": [
-        "Modular suite: 10 backend libraries (Spring Boot) and 14 frontend (Angular) for auth, users, e-commerce, CMS, reservations and more",
-        "Published and versioned on GitHub Packages (Maven and npm)",
-        "Nx monorepo that organizes and builds the frontend libraries",
-        "Continuous publishing with GitHub Actions",
-        "Design system with a configurable 4-color theme and dark mode"
-      ],
-      "problema": "Every time I started a new project I rewrote the same things: auth, users, e-commerce, CMS, emails... I decided to extract all that repeated work into versioned, published libraries, to set up the foundation of any app in hours instead of days.",
-      "aprendizajes": "Designing code meant to be consumed by other projects (and my future self) forced me to care about semantic versioning, backward compatibility and documenting each module. Setting up the publish CI/CD on GitHub Packages and an Nx monorepo was the closest thing to product work I've done.",
-      "fecha": "February 2026 - June 2026",
-      "estado": "Published and maintained"
     },
     {
       "slug": "portfolio",
@@ -128,7 +199,7 @@
       "permisos": "555",
       "nombre": "Gas-Path",
       "tipo": "Mobile",
-      "descripcion": "Petrol station finder based on your location (final degree project)",
+      "descripcion": "Petrol station finder based on your location (final degree project, 2024)",
       "imagen": "/proyectos/gas-path.png",
       "repositorios": [
         { "etiqueta": "Repository", "url": "https://github.com/AdrianMartinCano/Gas-Path" }
@@ -140,7 +211,7 @@
         "Firebase authentication"
       ],
       "problema": "It was my final degree project (DAM, 2024). I wanted to solve something everyday —finding the cheapest petrol station near you— and learn modern native mobile development with Kotlin and Jetpack Compose along the way.",
-      "aprendizajes": "My first complete mobile app: I learned Jetpack Compose, MVVM architecture and integrating external services (Google Maps, Firebase). Today I'd take more care with state management and cache the price API calls to reduce data usage.",
+      "aprendizajes": "My first complete mobile app: I learned Jetpack Compose, MVVM architecture and integrating external services (Google Maps, Firebase). Today I'd take more care with state management and cache the price API calls to reduce data usage. The idea kept growing: today it lives inside Agarrao, as a petrol station finder by price and distance.",
       "fecha": "March 2024 - June 2024",
       "estado": "Finished"
     }
